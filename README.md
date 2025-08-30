@@ -5,7 +5,7 @@ Plugin kinh tế riêng không sử dụng Vault, cung cấp API để các plug
 - Lưu dữ liệu: YAML / SQLite / MySQL (HikariCP).
 - PlaceholderAPI: `%vneco_balance%`, `%vneco_balance_formatted%`, `%vneco_top_1_name%`, `%vneco_top_1_amount%` (đến top_10).
 - Top player, thông báo + âm thanh tuỳ chỉnh.
-- Lệnh: `/money [player]`, `/money top`, `/money pay <player> <amount>`, `/eco give|set|take <player> <amount>`, `/eco reload`.
+- Lệnh: `/vnmoney [player]`, `/vnmoney top`, `/vnmoney pay <player> <amount>`, `/vneco give|set|take <player> <amount>`, `/vneco reload`.
 
 ## Build
 ```bash
@@ -92,17 +92,24 @@ Trong code, `import class từ org.fox.vneconomy.api.`
 
 👉 Cách này dễ nhất vì bạn không phải build thêm file API riêng.
 
-### 🟡 Cách 2: Dùng API module riêng
+### 🟡 Cách 2: Dùng API Thư viện
 
-Nếu bạn muốn build plugin mà không phụ thuộc JAR runtime, bạn có thể copy file VNEconomy-API.jar (mình tách cho bạn nếu cần).
+Nếu bạn muốn build plugin mà không phụ thuộc JAR runtime, bạn có thể copy file VNEconomy-API.jar
 
-Khi build plugin custom bằng Maven:
+Khi build plugin custom bằng Maven thêm đầy đủ api vào để tải thư viện api của plugin:
 
 ```yaml
+
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+
 <dependency>
-    <groupId>org.fox</groupId>
+    <groupId>com.github.ShadowZa982</groupId>
     <artifactId>VNEconomy</artifactId>
-    <version>1.0.0</version>
+    <version>master-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
+
 ```
