@@ -1,0 +1,21 @@
+name: VNEconomy
+main: org.fox.vneconomy.VNEconomy
+version: 1.0.0
+api-version: 1.19
+authors: [FoxTM, ChatGPT]
+softdepend: [PlaceholderAPI]
+commands:
+  vnmoney:
+    description: Xem tiền, top, trả tiền.
+    usage: "/vnmoney [player]|top|pay <player> <amount>"
+    aliases: [bal, balance]
+  vneco:
+    description: Lệnh quản trị kinh tế (give|set|take|reload).
+    usage: "/vneco <give|set|take|reload> <player> <amount>"
+permissions:
+  vneco.use:
+    default: true
+  vneco.pay:
+    default: true
+  vneco.admin:
+    default: op

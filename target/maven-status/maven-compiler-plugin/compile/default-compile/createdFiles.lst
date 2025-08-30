@@ -1,0 +1,16 @@
+org\fox\vneconomy\storage\SQLiteStorage.class
+org\fox\vneconomy\commands\EcoAdminCommand.class
+org\fox\vneconomy\util\Currency.class
+org\fox\vneconomy\VNEconomy.class
+org\fox\vneconomy\leaderboard\TopManager.class
+org\fox\vneconomy\api\EconomyProvider.class
+org\fox\vneconomy\storage\MySQLStorage.class
+org\fox\vneconomy\api\EconomyProvider$TopEntry.class
+org\fox\vneconomy\commands\MoneyCommand.class
+org\fox\vneconomy\util\Msg.class
+org\fox\vneconomy\placeholders\VNEconomyExpansion.class
+org\fox\vneconomy\api\EconomyAPI.class
+org\fox\vneconomy\listeners\PlayerJoinListener.class
+org\fox\vneconomy\storage\YamlStorage.class
+org\fox\vneconomy\events\EconomyChangeEvent.class
+org\fox\vneconomy\storage\Storage.class

@@ -1,0 +1,56 @@
+# Cấu hình chính cho VNEconomy
+currency:
+  symbol: "₫"
+  # hiển thị dạng VND, ví dụ 1000000 -> 1,000,000 ₫
+  suffix: " ₫"
+  use-short-format: true       # nếu true: 1.2M ₫, 950K ₫
+  decimals: 0                  # số lẻ
+
+storage:
+  # yaml | sqlite | mysql
+  type: "yaml"
+
+mysql:
+  host: "localhost"
+  port: 3306
+  database: "vneconomy"
+  username: "root"
+  password: "password"
+  useSSL: false
+  pool:
+    maximumPoolSize: 10
+    minimumIdle: 2
+
+sqlite:
+  file: "economy.db"
+
+leaderboard:
+  cache-seconds: 60
+  size: 10
+
+messages:
+  prefix: "&e&lVNECO &7» "
+  no-permission: "&cBạn không có quyền!"
+  player-not-found: "&cKhông tìm thấy người chơi &e%player%&c."
+  invalid-number: "&cSố tiền không hợp lệ."
+  negative-amount: "&cSố tiền phải lớn hơn 0."
+  self-pay: "&cBạn không thể chuyển tiền cho chính mình."
+  balance-self: "&aSố dư của bạn: &e%amount%"
+  balance-other: "&aSố dư của &e%player%&a: &e%amount%"
+  paid-sender: "&aĐã chuyển &e%amount%&a cho &e%target%&a."
+  paid-receiver: "&aBạn nhận được &e%amount%&a từ &e%sender%&a."
+  top-header: "&6&lTOP %size% NGƯỜI GIÀU NHẤT:"
+  top-line: "&e%pos%. &f%player% &7- &a%amount%"
+  set: "&aĐã đặt tiền của &e%player%&a thành &e%amount%."
+  give: "&aĐã cộng &e%amount%&a cho &e%player%."
+  take: "&aĐã trừ &e%amount%&a của &e%player%."
+  reloaded: "&aĐã reload cấu hình và dữ liệu."
+  sound-muted: "&7Âm thanh đã tắt cho bạn."
+  sound-unmuted: "&aÂm thanh đã bật cho bạn."
+
+sounds:
+  enabled-by-default: true
+  success: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  error: "BLOCK_ANVIL_LAND"
+  pay: "ENTITY_ITEM_PICKUP"
+  top: "UI_TOAST_CHALLENGE_COMPLETE"
