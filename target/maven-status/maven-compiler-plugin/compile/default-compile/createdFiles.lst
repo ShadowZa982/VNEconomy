@@ -8,6 +8,7 @@ org\fox\vneconomy\storage\MySQLStorage.class
 org\fox\vneconomy\api\EconomyProvider$TopEntry.class
 org\fox\vneconomy\commands\MoneyCommand.class
 org\fox\vneconomy\util\Msg.class
+org\fox\vneconomy\api\VNEconomyAPI.class
 org\fox\vneconomy\placeholders\VNEconomyExpansion.class
 org\fox\vneconomy\api\EconomyAPI.class
 org\fox\vneconomy\listeners\PlayerJoinListener.class

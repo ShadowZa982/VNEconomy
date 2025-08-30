@@ -1,5 +1,6 @@
 D:\plugin\VNEconomy\src\main\java\org\fox\vneconomy\api\EconomyAPI.java
 D:\plugin\VNEconomy\src\main\java\org\fox\vneconomy\api\EconomyProvider.java
+D:\plugin\VNEconomy\src\main\java\org\fox\vneconomy\api\VNEconomyAPI.java
 D:\plugin\VNEconomy\src\main\java\org\fox\vneconomy\commands\EcoAdminCommand.java
 D:\plugin\VNEconomy\src\main\java\org\fox\vneconomy\commands\MoneyCommand.java
 D:\plugin\VNEconomy\src\main\java\org\fox\vneconomy\events\EconomyChangeEvent.java
