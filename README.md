@@ -1,17 +1,37 @@
 # VNEconomy (VND) — No Vault
 
 Plugin kinh tế riêng không sử dụng Vault, cung cấp API để các plugin tùy biến hook vào.
+---
 - Đơn vị tiền tệ: Việt Nam (₫), định dạng ngắn 1.2M ₫ (có thể tắt).
 - Lưu dữ liệu: YAML / SQLite / MySQL (HikariCP).
 - PlaceholderAPI: `%vneco_balance%`, `%vneco_balance_formatted%`, `%vneco_top_1_name%`, `%vneco_top_1_amount%` (đến top_10).
 - Top player, thông báo + âm thanh tuỳ chỉnh.
-- Lệnh: `/vnmoney [player]`, `/vnmoney top`, `/vnmoney pay <player> <amount>`, `/vneco give|set|take <player> <amount>`, `/vneco reload`.
+- Lệnh: 
+- - `/vnmoney [player]`
+- - `/vnmoney top`
+- - `/vnmoney pay <player> <số tiền>`
+- - `/vneco give|set|take <player> <số tiền>`
+- - `/vneco reload`
+- - `/napqr <số tiền>`
+---
 
 ## Build
 ```bash
 mvn -q -e -DskipTests package
 ```
-Tệp phát hành ở `target/VNEconomy-1.0.0-shaded.jar`.
+---
+
+## Cách sử dụng chức năng quét Qr
+- Đầu tiên bạn truy cập vào website: https://sepay.vn
+- Sau đó đăng ký tài khoản và làm theo các bước để thiết lập liên kết tài khoàn ngân hàng trên web
+- Tiếp theo:
+- - Sử dụng Tên ngân hàng và số tài khoàn bạn đã đăng ký liên kết trên SeaPay và gán vào config
+``` yaml
+sepay:
+  bank: "MBBank" # Ngân hàng mà bạn đăng ký trên sea-pay|MBBank, Viettin v.v
+  account: "0280110919999" # Stk ngân hàng của bạn đã đăng ký theo đúng tk liên kết
+```
+---
 
 ## API sử dụng trong plugin khác
 ```java
@@ -23,7 +43,7 @@ EconomyAPI.get().take(playerUUID, 50000);  // -50,000 ₫
 EconomyAPI.get().set(playerUUID, 1234567); // =1,234,567 ₫
 boolean ok = EconomyAPI.get().has(playerUUID, 10000); // checkMoney
 ```
-
+---
 ## Placeholder
 - `%vneco_balance%` — số dư thô
 - `%vneco_balance_formatted%` — số dư định dạng VND
@@ -33,6 +53,8 @@ boolean ok = EconomyAPI.get().has(playerUUID, 10000); // checkMoney
 - `vneco.use` — dùng /money
 - `vneco.pay` — dùng /money pay
 - `vneco.admin` — dùng /eco
+
+---
 
 ## 1. Plugin của bạn sẽ hook API như sau
 
@@ -65,7 +87,7 @@ System.out.println("Số dư: " + bal);
     }
 }
 ```
-
+---
 ## 2. Làm sao để tải API của VNEconomy trong plugin khác?
 
 Có 2 cách:
@@ -91,7 +113,7 @@ hoặc nếu không bắt buộc thì:
 Trong code, `import class từ org.fox.vneconomy.api.`
 
 👉 Cách này dễ nhất vì bạn không phải build thêm file API riêng.
-
+---
 ### 🟡 Cách 2: Dùng API Thư viện
 
 Nếu bạn muốn build plugin mà không phụ thuộc JAR runtime, bạn có thể copy file VNEconomy-API.jar

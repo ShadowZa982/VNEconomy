@@ -39,7 +39,6 @@ public class VNEconomyExpansion extends PlaceholderExpansion {
                 plugin.getConfig().getInt("currency.decimals", 0)
             );
         }
-        // top placeholders: top_1_name, top_1_amount ... top_10_amount
         if (params.startsWith("top_")) {
             String[] sp = params.split("_");
             if (sp.length >= 3) {

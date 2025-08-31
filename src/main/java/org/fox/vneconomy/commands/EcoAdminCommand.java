@@ -6,14 +6,18 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.fox.vneconomy.VNEconomy;
 import org.fox.vneconomy.api.EconomyAPI;
 import org.fox.vneconomy.util.Currency;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
-public class EcoAdminCommand implements CommandExecutor {
+public class EcoAdminCommand implements CommandExecutor, TabCompleter {
 
     private final VNEconomy plugin;
     public EcoAdminCommand(VNEconomy plugin) { this.plugin = plugin; }
@@ -25,19 +29,21 @@ public class EcoAdminCommand implements CommandExecutor {
             return true;
         }
         if (args.length == 0) {
-            sender.sendMessage("/eco <give|set|take|reload> <player> <amount>");
+            sender.sendMessage("/vneco <give|set|take|reload> <player> <amount>");
             return true;
         }
         String sub = args[0].toLowerCase();
         if (sub.equals("reload")) {
             plugin.reloadAll();
+            plugin.reloadDataYaml();
+            plugin.reloadConfig();
             sender.sendMessage(plugin.msg("reloaded"));
             play(sender, "success");
             return true;
         }
 
         if (args.length < 3) {
-            sender.sendMessage("/eco " + sub + " <player> <amount>");
+            sender.sendMessage("/vneco " + sub + " <player> <amount>");
             return true;
         }
 
@@ -92,5 +98,32 @@ public class EcoAdminCommand implements CommandExecutor {
                 p.playSound(p.getLocation(), Sound.valueOf(s), 1f, 1f);
             } catch (IllegalArgumentException ignored) {}
         }
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+        if (!sender.hasPermission("vneco.admin")) return Collections.emptyList();
+
+        List<String> completions = new ArrayList<>();
+        if (args.length == 1) {
+            completions.add("give");
+            completions.add("set");
+            completions.add("take");
+            completions.add("reload");
+            return completions;
+        }
+        if (args.length == 2 && !args[0].equalsIgnoreCase("reload")) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                completions.add(p.getName());
+            }
+            return completions;
+        }
+        if (args.length == 3 && !args[0].equalsIgnoreCase("reload")) {
+            completions.add("1000");
+            completions.add("5000");
+            completions.add("10000");
+            return completions;
+        }
+        return Collections.emptyList();
     }
 }

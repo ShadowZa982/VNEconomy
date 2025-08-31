@@ -2,16 +2,26 @@ name: VNEconomy
 main: org.fox.vneconomy.VNEconomy
 version: 1.0.0
 api-version: 1.19
-authors: [FoxTM, ChatGPT]
+load: POSTWORLD
+authors: [FoxTM]
 softdepend: [PlaceholderAPI]
 commands:
   vnmoney:
     description: Xem tiền, top, trả tiền.
     usage: "/vnmoney [player]|top|pay <player> <amount>"
-    aliases: [bal, balance]
+    aliases: [ bal, balance, money ]
   vneco:
     description: Lệnh quản trị kinh tế (give|set|take|reload).
     usage: "/vneco <give|set|take|reload> <player> <amount>"
+    permission: vneco.admin
+  napqr:
+    description: Nạp tiền qua QR Banking
+    usage: /<command> <sotien>
+  napthe:
+    description: Nạp thẻ cào
+    usage: /napthe <loai> <menhgia> <seri> <pin>
+    aliases: [ card ]
+
 permissions:
   vneco.use:
     default: true
@@ -19,3 +29,7 @@ permissions:
     default: true
   vneco.admin:
     default: op
+  vneco.napthe:
+    default: true
+  vneco.napqr:
+    default: true

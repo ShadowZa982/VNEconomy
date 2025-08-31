@@ -37,6 +37,8 @@
                 <relocation>
                   <pattern>com.zaxxer.hikari</pattern>
                   <shadedPattern>org.fox.vneconomy.libs.hikari</shadedPattern>
+                  <pattern>net.wesjd.anvilgui</pattern>
+                  <shadedPattern>org.fox.anvilgui</shadedPattern>
                 </relocation>
                 <relocation>
                   <pattern>org.sqlite</pattern>
@@ -44,6 +46,18 @@
                 </relocation>
               </relocations>
               <minimizeJar>true</minimizeJar>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludeDefaults>false</excludeDefaults>
+                  <includes>
+                    <include>net/wesjd/anvilgui/**</include>
+                  </includes>
+                  <excludes>
+                    <exclude>META-INF/MANIFEST.MF</exclude>
+                  </excludes>
+                </filter>
+              </filters>
             </configuration>
           </execution>
         </executions>

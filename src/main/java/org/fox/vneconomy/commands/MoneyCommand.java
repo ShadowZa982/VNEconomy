@@ -5,16 +5,18 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.fox.vneconomy.VNEconomy;
 import org.fox.vneconomy.api.EconomyAPI;
 import org.fox.vneconomy.api.EconomyProvider;
 import org.fox.vneconomy.util.Currency;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
-public class MoneyCommand implements CommandExecutor {
+public class MoneyCommand implements CommandExecutor, TabCompleter {
 
     private final VNEconomy plugin;
     public MoneyCommand(VNEconomy plugin) { this.plugin = plugin; }
@@ -42,9 +44,9 @@ public class MoneyCommand implements CommandExecutor {
             int pos = 1;
             for (EconomyProvider.TopEntry e : top) {
                 sender.sendMessage(plugin.msg("top-line")
-                    .replace("%pos%", String.valueOf(pos++))
-                    .replace("%player%", e.name())
-                    .replace("%amount%", format(e.amount())));
+                        .replace("%pos%", String.valueOf(pos++))
+                        .replace("%player%", e.name())
+                        .replace("%amount%", format(e.amount())));
             }
             if (sender instanceof Player p) play(p, "top");
             return true;
@@ -73,13 +75,12 @@ public class MoneyCommand implements CommandExecutor {
             return true;
         }
 
-        // /money <player>
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target != null) {
             double bal = EconomyAPI.get().getBalance(target.getUniqueId());
             sender.sendMessage(plugin.msg("balance-other")
-                .replace("%player%", target.getName())
-                .replace("%amount%", format(bal)));
+                    .replace("%player%", target.getName())
+                    .replace("%amount%", format(bal)));
             if (sender instanceof Player p) play(p, "success");
             return true;
         } else {
@@ -103,5 +104,33 @@ public class MoneyCommand implements CommandExecutor {
         try {
             p.playSound(p.getLocation(), Sound.valueOf(s), 1f, 1f);
         } catch (IllegalArgumentException ignored) {}
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+        if (!sender.hasPermission("vneco.use")) return Collections.emptyList();
+
+        List<String> completions = new ArrayList<>();
+        if (args.length == 1) {
+            completions.add("top");
+            completions.add("pay");
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                completions.add(p.getName());
+            }
+            return completions;
+        }
+        if (args.length == 2 && args[0].equalsIgnoreCase("pay")) {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                completions.add(p.getName());
+            }
+            return completions;
+        }
+        if (args.length == 3 && args[0].equalsIgnoreCase("pay")) {
+            completions.add("1000");
+            completions.add("5000");
+            completions.add("10000");
+            return completions;
+        }
+        return Collections.emptyList();
     }
 }

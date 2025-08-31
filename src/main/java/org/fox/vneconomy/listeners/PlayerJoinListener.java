@@ -12,7 +12,6 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        // Ensure account exists; nothing else to do for YAML/SQL since set() creates/upserts.
         EconomyAPI.get().set(e.getPlayer().getUniqueId(), EconomyAPI.get().getBalance(e.getPlayer().getUniqueId()));
     }
 }

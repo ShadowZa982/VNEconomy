@@ -1,0 +1,11 @@
+title: "💎 GIAO DỊCH THÀNH CÔNG 💎"
+separator: "═══════════════════════"
+transaction_info: "🎮 THÔNG TIN GIAO DỊCH"
+footer: "Cảm ơn bạn đã ủng hộ server!\nHệ thống auto nạp"
+fields:
+  account: "🏆 Tài Khoản"
+  amount: "💰 Số Tiền Nạp"
+  balance: "💳 Số Dư Mới"
+  total_recharged: "📊 Tổng Đã Nạp"
+  date: "⏰ Thời Gian"
+  status: "[ ✅ Giao dịch đã được xử lý tự động ]"

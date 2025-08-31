@@ -1,3 +1,2 @@
 # Dữ liệu người chơi (khi dùng storage: yaml). Mỗi người chơi lưu theo UUID.
 players: {}
-muted-sound: []  # danh sách uuid tắt âm

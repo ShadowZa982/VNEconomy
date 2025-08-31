@@ -6,20 +6,13 @@ import org.fox.vneconomy.events.EconomyChangeEvent;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-/**
- * EconomyAPI - API chính cho plugin khác sử dụng.
- *
- * Dùng trực tiếp: EconomyAPI.getBalance(uuid), EconomyAPI.give(uuid, amount), ...
- */
+
 public class EconomyAPI {
     private static EconomyProvider provider;
 
     public static void init(EconomyProvider p) { provider = p; }
     public static EconomyProvider get() { return provider; }
 
-    // ==============================
-    //  Sync Methods
-    // ==============================
     public static double getBalance(UUID uuid) {
         return provider.getBalance(uuid);
     }
@@ -59,9 +52,6 @@ public class EconomyAPI {
         return provider.take(uuid, amount);
     }
 
-    // ==============================
-    //  Async Methods
-    // ==============================
     public static CompletableFuture<Double> getBalanceAsync(UUID uuid) {
         return provider.getBalanceAsync(uuid);
     }

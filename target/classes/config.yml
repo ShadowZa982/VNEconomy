@@ -1,4 +1,22 @@
 # Cấu hình chính cho VNEconomy
+
+# ============ SePay Config ============
+sepay:
+  bank: "MBBank"
+  account_number: "0280110919999"
+  template: "compact"
+  prefix: "NapTien"
+  webhook:
+    enabled: true
+    port: 8080
+    secret: "" # tuỳ chọn, nếu bạn bật xác thực chữ ký webhook ở SePay thì lưu secret ở đây
+
+order_expire_ms: 60000
+
+webhook:
+  enabled: true
+  url: "YOUR_DISCORD_WEBHOOK_URL"
+
 currency:
   symbol: "₫"
   # hiển thị dạng VND, ví dụ 1000000 -> 1,000,000 ₫
@@ -7,8 +25,8 @@ currency:
   decimals: 0                  # số lẻ
 
 storage:
-  # yaml | sqlite | mysql
-  type: "yaml"
+  #sqlite | mysql
+  type: "sqlite"
 
 mysql:
   host: "localhost"
@@ -27,6 +45,41 @@ sqlite:
 leaderboard:
   cache-seconds: 60
   size: 10
+
+# ==============================
+# ⚡ VNEconomy - TheSieuToc Config
+# ==============================
+
+# API TheSieuToc
+TheSieuToc-API:
+  key: "API_KEY_CUA_BAN"
+  prices:
+    10000: 10000
+    20000: 20000
+    50000: 50000
+    100000: 100000
+
+thesieutoc:
+  webhook:
+    enabled: true
+    port: 8080
+    path: "/callback"
+
+# ==============================
+# ⚡ Cài đặt khác
+# ==============================
+
+# Tỉ lệ quy đổi tiền nạp thành xu trong game
+# Ví dụ: 10000 VND = 100 xu
+exchange-rate: 0.01
+
+
+Supported-Cards:
+  - VIETTEL
+  - MOBIFONE
+  - VINAPHONE
+  - ZING
+  - GATE
 
 messages:
   prefix: "&e&lVNECO &7» "
