@@ -33,7 +33,6 @@ public class CallbackServer {
                 return;
             }
 
-            // đọc body
             BufferedReader br = new BufferedReader(new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
             String line;
@@ -41,17 +40,14 @@ public class CallbackServer {
                 sb.append(line);
             }
 
-            // parse body (application/x-www-form-urlencoded)
             Map<String, String> params = parsePostData(sb.toString());
 
             String content = params.get("content");
             String status = params.get("status");
             int amount = Integer.parseInt(params.getOrDefault("amount", "0"));
 
-            // gọi xử lý trong TheSieuTocAPI
             TheSieuTocAPI.handleCallback(content, status, amount);
 
-            // response cho TST
             String response = "OK";
             exchange.sendResponseHeaders(200, response.getBytes().length);
             try (OutputStream os = exchange.getResponseBody()) {

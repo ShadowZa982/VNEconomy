@@ -12,7 +12,6 @@ import java.security.MessageDigest;
 
 public class Utils {
 
-    // Lấy dữ liệu JSON từ URL
     public static JsonObject fetchJsonResponse(String urlStr) {
         try {
             URL url = new URL(urlStr);
@@ -50,7 +49,6 @@ public class Utils {
     }
 
 
-    // Tạo randomMD5 cho thẻ
     public static String randomMD5() {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

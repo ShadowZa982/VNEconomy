@@ -27,15 +27,12 @@ public class Card {
     public String getSerial() { return serial; }
     public String getPin() { return pin; }
 
-    // transactionID
     public String getTransactionID() { return transactionID; }
     public void setTransactionID(String transactionID) { this.transactionID = transactionID; }
 
-    // randomMD5
     public String getRandomMD5() { return randomMD5; }
     public void setRandomMD5(String randomMD5) { this.randomMD5 = randomMD5; }
 
-    // retry
     public int getRetry() { return retry; }
     public void setRetry(int retry) { this.retry = retry; }
 }

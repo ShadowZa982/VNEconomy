@@ -11,7 +11,7 @@ public enum CardPrice {
     UNKNOWN(0, -1);
 
     private final int price;
-    private final int id; // id mà API TheSieuToc yêu cầu
+    private final int id;
 
     CardPrice(int price, int id) {
         this.price = price;

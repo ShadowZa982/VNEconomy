@@ -40,14 +40,11 @@ public class NapTheCommand implements CommandExecutor {
             return true;
         }
 
-        // kiểm tra mệnh giá trong config.yml
         int apiPrice = TheSieuTocAPI.getMappedPrice(price);
         if (apiPrice == -1) {
             p.sendMessage("§cMệnh giá thẻ không được hỗ trợ!");
             return true;
         }
-
-
 
         String seri = args[2];
         String pin = args[3];

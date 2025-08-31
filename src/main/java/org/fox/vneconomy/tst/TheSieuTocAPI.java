@@ -101,7 +101,6 @@ public class TheSieuTocAPI {
         });
     }
 
-    // ✅ hàm map mệnh giá
     public static int getMappedPrice(int inputPrice) {
         if (plugin == null) return -1;
         return plugin.getConfig().getInt("TheSieuToc-API.prices." + inputPrice, -1);
