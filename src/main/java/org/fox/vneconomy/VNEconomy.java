@@ -23,6 +23,7 @@ import org.fox.vneconomy.tasks.SePayWebhookServer;
 import org.fox.vneconomy.tst.CallbackServer;
 import org.fox.vneconomy.tst.TheSieuTocAPI;
 import org.fox.vneconomy.util.Msg;
+import org.fox.vneconomy.util.UpdateChecker;
 
 import java.io.File;
 import java.io.IOException;
@@ -77,8 +78,10 @@ public class VNEconomy extends JavaPlugin {
         getCommand("napthe").setExecutor(new NapTheCommand());
         getServer().getPluginManager().registerEvents(new CardListener(this), this);
 
-
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+
+        UpdateChecker checker = new UpdateChecker(this);
+        getServer().getPluginManager().registerEvents(checker, this);
 
         topManager = new TopManager(this, storage);
         topManager.start();
@@ -109,7 +112,6 @@ public class VNEconomy extends JavaPlugin {
                 getLogger().severe("❌ Không mở được callback server: " + e.getMessage());
             }
         }
-
 
         long expireMs = getConfig().getLong("order_expire_ms", 60000);
 
@@ -145,14 +147,15 @@ public class VNEconomy extends JavaPlugin {
                                 if (player != null && player.isOnline()) {
                                     player.sendMessage("§c⏰ Đơn hàng §eDH" + orderId + " §cđã hết hạn!");
 
-                                    Iterator<ItemStack> it = player.getInventory().iterator();
-                                    while (it.hasNext()) {
-                                        ItemStack item = it.next();
-                                        if (item != null && item.getType() == Material.FILLED_MAP &&
-                                                item.hasItemMeta() &&
-                                                item.getItemMeta().hasDisplayName() &&
-                                                item.getItemMeta().getDisplayName().contains("QR Nạp Tiền")) {
-                                            it.remove();
+                                    // Duyệt inventory bằng slot để xóa
+                                    for (int slot = 0; slot < player.getInventory().getSize(); slot++) {
+                                        ItemStack item = player.getInventory().getItem(slot);
+                                        if (item != null
+                                                && item.getType() == Material.FILLED_MAP
+                                                && item.hasItemMeta()
+                                                && item.getItemMeta().hasDisplayName()
+                                                && item.getItemMeta().getDisplayName().contains("QR Nạp Tiền")) {
+                                            player.getInventory().setItem(slot, null);
                                         }
                                     }
                                 }
@@ -166,6 +169,7 @@ public class VNEconomy extends JavaPlugin {
                 e.printStackTrace();
             }
         }, 20L, 200L); // delay 1s, repeat 10s
+
 
         logStartupMessage(true);
     }

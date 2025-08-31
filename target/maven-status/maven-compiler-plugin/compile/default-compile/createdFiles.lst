@@ -27,6 +27,7 @@ org\fox\vneconomy\tst\CallbackServer$CallbackHandler.class
 org\fox\vneconomy\tasks\SePayWebhookServer.class
 org\fox\vneconomy\tst\Card.class
 org\fox\vneconomy\api\VNEconomyAPI.class
+org\fox\vneconomy\util\UpdateChecker.class
 org\fox\vneconomy\placeholders\VNEconomyExpansion.class
 org\fox\vneconomy\api\EconomyAPI.class
 org\fox\vneconomy\commands\NapTheCommand.class

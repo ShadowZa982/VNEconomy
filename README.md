@@ -26,11 +26,23 @@ mvn -q -e -DskipTests package
 - Sau đó đăng ký tài khoản và làm theo các bước để thiết lập liên kết tài khoàn ngân hàng trên web
 - Tiếp theo:
 - - Sử dụng Tên ngân hàng và số tài khoàn bạn đã đăng ký liên kết trên SeaPay và gán vào config
+- - Tại phần Webhook trên web gắn link vd: **http://ip_của_bạn:Port** server để web gửi dữ liệu Callback về nếu không đúng sẽ không nhận được nhưng tiền vẫn sẽ bj trừ (Nên lưu ý)
 ``` yaml
 sepay:
   bank: "MBBank" # Ngân hàng mà bạn đăng ký trên sea-pay|MBBank, Viettin v.v
   account: "0280110919999" # Stk ngân hàng của bạn đã đăng ký theo đúng tk liên kết
 ```
+![img.png](img.png)
+---
+
+## Cách sử dụng chức năng nạp thẻ
+- Đầu tiên bạn cần tạo tài khoản trên web thesieutoc
+- Vào phần Tích hợp API ấn vào API Website
+- Tại đó bạn thấy phần Tạo APIkey mới thì tạo APIkey
+- Trên server sau khi start server, copy ip kèm port host được thông báo và gán lên web thesieutoc (Lưu ý là port không được trùng với bất kỳ port nào đang sử dụng)
+- Chờ khi PIkey được duyệt sẽ copy APIkey đó và bỏ vào config phần API-key
+![img_1.png](img_1.png)
+
 ---
 
 ## API sử dụng trong plugin khác

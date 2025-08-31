@@ -3,7 +3,7 @@
 # ============ SePay Config ============
 sepay:
   bank: "MBBank"
-  account_number: "0280110919999"
+  account: "0280110919999"
   template: "compact"
   prefix: "NapTien"
   webhook:
@@ -13,6 +13,7 @@ sepay:
 
 order_expire_ms: 60000
 
+#Discord Hook
 webhook:
   enabled: true
   url: "YOUR_DISCORD_WEBHOOK_URL"
